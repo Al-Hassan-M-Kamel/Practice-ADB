@@ -342,11 +342,11 @@ FROM orders;
     Your final answer should have 6 values - one for each paper type for the average number of sales, as well as the average amount.
 */
 
-SELECT
+SELECT id, total,
 MIN(occurred_at) earliest_order
 FROM orders;
 
-SELECT occurred_at earliest_order
+SELECT occurred_at , id, total
 FROM orders
 ORDER BY occurred_at ASC
 LIMIT 1;
@@ -436,8 +436,7 @@ FROM orders o
 JOIN accounts a
 ON a.id = o.account_id
 GROUP BY account
-ORDER BY smallest_order
-LIMIT 1;
+ORDER BY smallest_order;
 
 /*
 	Q38: How many of the sales reps have more than 5 accounts that they manage?
