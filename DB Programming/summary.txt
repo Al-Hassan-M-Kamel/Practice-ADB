@@ -1,0 +1,6 @@
+no threading ends in 598.2 secs procedure insert
+no threading ends in 595.2 secs raw insert
+
+
+threading ends in 85.98 secs procedure insert
+threading ends in 86.74 secs raw insert

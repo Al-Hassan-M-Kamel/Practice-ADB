@@ -1,0 +1,41 @@
+import random 
+from datetime import datetime
+
+import json
+import random
+from datetime import datetime, timedelta
+
+# Sample data lists
+first_names = ["Ali", "Sara", "John", "Linda", "Michael", "Fatma", "Samir", "Mary", "Khaled", "Emily", "Omar", "Zeinab", "Mona", "David", "Hussein", "Nour", "Ahmed", "Emily", "Mahmoud", "Layla"]
+last_names = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson"]
+jobs = ["Manager", "Developer", "Designer", "Accountant", "Engineer", "Analyst", "HR", "Sales", "Support", "Admin", "Intern", "Director", "Consultant", "Technician"]
+
+records = []
+now = datetime.now()
+
+for i in range(1, 100001):
+    fname = random.choice(first_names)
+    lname = random.choice(last_names)
+    hourly_pay = round(random.uniform(10.0, 50.0), 2)
+    #salary = round(random.uniform(20000, 120000), 2)
+    job = random.choice(jobs)
+    # Hire date: random date in last 10 years
+    hire_date = (now - timedelta(days=random.randint(0, 365*10))).strftime('%Y-%m-%d %H:%M:%S')
+    # Random manager (super_id): allow None for some, else from valid ids
+    super_id = random.choice([None] + list(range(1, i)) if i > 1 else [None])
+    record = {
+        "emp_id": i,
+        "fname": fname,
+        "lname": lname,
+        "hourly_pay": hourly_pay,
+        #"salary": salary,
+        "job": job,
+        "hire_date": hire_date,
+        "super_id": super_id
+    }
+    records.append(record)
+
+with open("employees_1000.json", "w", encoding="utf-8") as f:
+    json.dump(records, f, ensure_ascii=False, indent=2)
+
+print("employees_1000.json created with 1000 records")
